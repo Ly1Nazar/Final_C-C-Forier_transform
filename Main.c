@@ -3,6 +3,7 @@
 #include <time.h>
 #include <string.h>
 #include <errno.h>
+#include "Header.h"
 #define N 3
 #define pi 3.14159265358979
 void input() {
@@ -35,7 +36,7 @@ void input() {
         fclose(filepoint2);
     }
 }
-
+//function to get data from different files returnes file
 double* get_data(int a) {
     if (a == 0) {
         FILE* filepoint;
@@ -180,6 +181,7 @@ double* get_data(int a) {
 
 void Forier() {
     int a;
+		//using pointers to refer to arrays from get_data
     double* point = get_data(a = 0);
     double* point2 = get_data(a = 1);
     double real[N], imag[N];
