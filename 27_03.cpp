@@ -7,7 +7,7 @@
 #define N 6
 #define pi 3.14159265358979
 using namespace std;
-
+//generate creates consiquence
 void generate() {
 	int v1,v2;
 	ofstream rea_l;
@@ -24,7 +24,7 @@ void generate() {
 	rea_l.close();
 	imagi.close();
 }
-
+//own class of Complex numbers
 class Complex {
 private:
 	double re, im;
@@ -42,22 +42,21 @@ public:
 	Complex Forier(Complex x);
 	Complex revForier(Complex x);
 };
-
+//complex multiplication
 Complex Complex::multipl(Complex x) {
 	Complex z(re * x.re - im * x.im, x.re * im + x.im * re);
 	return z;
 }
+//compex addition
 Complex Complex::add(Complex x) {
 	Complex z(re + x.re, im + x.im);
 	return z;
 }
 
 Complex Complex::Forier(Complex x) {
-	//открываем случайно сгенерированые последовательности
 	ifstream rea_l, imagi;
 	rea_l.open("real.txt");
 	imagi.open("imaginary.txt");
-	//открываю два документа, в которые перейдут преобразованные числа
 	//ofstream - output, ifstream - input
 	ofstream res_real, res_imag;
 	res_real.open("real_res.txt");
@@ -70,7 +69,7 @@ Complex Complex::Forier(Complex x) {
 		rea_l >> real[a];
 		imagi >> imag[a];
 	}
-	//собственно преобразование
+	//Fourier transform
 	for (int k = 0; k < N; k++) {
 		result = 0;
 		Imag_result = 0;
@@ -92,7 +91,7 @@ Complex Complex::Forier(Complex x) {
 	Complex f(result, Imag_result);
 	return f;
 }
-
+//Reverse Fourier transform
 Complex Complex::revForier(Complex x) {
 	ifstream input_real, input_imag;
 	input_real.open("real_res.txt");
@@ -117,8 +116,6 @@ Complex Complex::revForier(Complex x) {
 			double temp_im = 0;
 			temp_re = re_real[n] * cos(2 * pi * k * n / N) + re_imag[n] * sin(2 * pi * k * n / N);
 			temp_im = re_imag[n] * cos(2 * pi * k * n / N) - re_real[n] * sin(2 * pi * k * n / N);
-			// = (temp_re / N);
-			//arr_im[n] = (temp_im/N);
 			re_result += (temp_re/N);
 			Imag_result += (temp_im/N);
 		}
