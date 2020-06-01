@@ -138,6 +138,19 @@ Complex Complex::revForier(Complex x) {
 	Complex e(re_result, Imag_result);
 	return e;
 }
+Complex Complex::result() {
+	Complex z;
+	ifstream input_real, input_imag;
+	input_real.open("real_res.txt");
+	input_imag.open("imag_res.txt");
+	double re_real[N], re_imag[N];
+	for (int i = 0; i < N; i++) {
+		input_real >> re_real[i];
+		input_imag >> re_imag[i];
+		cout<<"{" <<re_real[i]<<"+i"<< re_imag[i]<<"}";
+	}
+	return z;
+}
 
 int main() {
 	generate();
